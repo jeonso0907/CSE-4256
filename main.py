@@ -1,98 +1,68 @@
 from collections import defaultdict
 
-# Question 1
 
-def dict_to_matrix(d):
-# Your code goes here.
+def complement_1(m):
 	result = []
-	for i in range(len(d)):
-		result.append([0] * len(d))
-
-	for key, value in d.items():
-		for number in value:
-			result[key][number] = 1
-	return result
-
-# Question 2
-
-def dict_to_list(d):
-# Your code goes here.
-	result = []
-
-	for key, value in d.items():
-		for number in value:
-			if [number, key] not in result:
-				result.append([key, number])
-	return result
-
-# Question 3
-
-def list_to_dict(l):
-# Your code goes here.
-	result = defaultdict(list)
-
-	for edge in l:
-		result[edge[0]].append(edge[1])
-		result[edge[1]].append(edge[0])
-	return result
-
-# Question 4
-
-def list_to_matrix(l):
-# Your code goes here.
-	result = []
-	for i in range(len(l)):
-		result.append([0] * len(l))
-
-	for edge in l:
-		result[edge[0]][edge[1]] = 1
-		result[edge[1]][edge[0]] = 1
-	return result
-
-# Question 5
-
-def matrix_to_dict(m):
-# Your code goes here.
-	result = defaultdict(list)
+	for i in range(len(m)):
+		result.append([0] * len(m))
 
 	for x in range(len(m)):
 		row = m[x]
 		for y in range(len(row)):
-			if row[y] == 1:
-				result[x].append(y)
-
+			if x != y and row[y] != 1:
+				result[x][y] = 1
+	
 	return result
 
-# Question 6
+def complement_2(g):
+	result = defaultdict(list)
+	l = g.keys()
+	for key, value in g.items():
+		for number in l:
+			if number not in value and number != key:
+				result[key].append(number)
+	return result
 
-def matrix_to_list(m):
+def transpose_1(m):
 	result = []
+	for i in range(len(m)):
+		result.append([0] * len(m))
 
 	for x in range(len(m)):
 		row = m[x]
 		for y in range(len(row)):
-			if row[y] == 1 and [y, x] not in result:
-				result.append([x, y])
+			print(x, y, m[x][y], m[y][x])
+			if x != y and (m[x][y] == 0 and m[y][x] == 1) or (m[x][y] == 1 and m[y][x] == 1):
+				result[x][y] = 1
+	
+	return result
+
+def transpose_2(g):
+	result = defaultdict(list)
+	l = g.keys()
+	for key, value in g.items():
+		for number in l:
+			if number != key and key in g[number]:
+				result[key].append(number)
 	return result
 
 
-# Test
+m = [[0, 1, 0, 0],
+	 [1, 0, 0, 1],
+	 [0, 0, 0, 1],
+	 [0, 1, 1, 0]]
 
-d = {0: [1, 2],
-		 1: [0, 2, 4],
-		 2: [0, 1, 3],
-		 3: [2, 4],
-		 4: [1, 3]}
+g =  {0: [1, 2, 4],
+	  1: [0, 2, 4],
+	  2: [0, 1, 3],
+	  3: [2, 4],
+	  4: [1, 3]}
 
-l = [(0, 1), (0, 2), (1, 2), (1, 4), (2, 3), (3, 4)]
+m2 = [[0, 1, 0, 1],
+	  [0, 0, 1, 0],
+	  [1, 1, 0, 1],
+	  [0, 1, 1, 0]]
 
-m = [[0, 1, 1, 0, 0],
-		 [1, 0, 1, 0, 1],
-	   [1, 1, 0, 1, 0],
-		 [0, 0, 1, 0, 1],
-		 [0, 1, 0, 1, 0]]	
 
-result = matrix_to_list(m)
+result = transpose_2(g)
 print(result)
-for row in result:
-	print(row)
