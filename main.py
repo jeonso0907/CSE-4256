@@ -1,68 +1,57 @@
-from collections import defaultdict
+from collections import deque
 
+# Question 1
+def pentagonal_number(num):
+	if num == 0:
+		return 1
+	else:
+		return pentagonal_number(num - 1) + 5 * (num - 1)
 
-def complement_1(m):
-	result = []
-	for i in range(len(m)):
-		result.append([0] * len(m))
-
-	for x in range(len(m)):
-		row = m[x]
-		for y in range(len(row)):
-			if x != y and row[y] != 1:
-				result[x][y] = 1
-	
+# Question 2
+def encode(s):
+	result = ''
+	count = 1
+	for i in range(1, len(s)):
+		if s[i - 1] == s[i]:
+			count += 1
+		else:
+			result += str(count) + s[i - 1]
+			count = 1
+	result += str(count) + s[i]
 	return result
 
-def complement_2(g):
-	result = defaultdict(list)
-	l = g.keys()
-	for key, value in g.items():
-		for number in l:
-			if number not in value and number != key:
-				result[key].append(number)
+def decode(s):
+	result = ''
+	for i in range(len(s) - 1):
+		if i % 2 == 0:
+			result += (int(s[i]) * s[i + 1])
 	return result
 
-def transpose_1(m):
-	result = []
-	for i in range(len(m)):
-		result.append([0] * len(m))
+# 고쳐야 함urn result
 
-	for x in range(len(m)):
-		row = m[x]
-		for y in range(len(row)):
-			print(x, y, m[x][y], m[y][x])
-			if x != y and (m[x][y] == 0 and m[y][x] == 1) or (m[x][y] == 1 and m[y][x] == 1):
-				result[x][y] = 1
-	
-	return result
+def decode(s):
+	result = ''
+		for i in range(len(s) - 1):
+				if i % 2 == 0:
+							result += (int(s[i]) * s[i + 1])
+								return result
 
-def transpose_2(g):
-	result = defaultdict(list)
-	l = g.keys()
-	for key, value in g.items():
-		for number in l:
-			if number != key and key in g[number]:
-				result[key].append(number)
-	return result
-
-
-m = [[0, 1, 0, 0],
-	 [1, 0, 0, 1],
-	 [0, 0, 0, 1],
-	 [0, 1, 1, 0]]
-
-g =  {0: [1, 2, 4],
-	  1: [0, 2, 4],
-	  2: [0, 1, 3],
-	  3: [2, 4],
-	  4: [1, 3]}
-
-m2 = [[0, 1, 0, 1],
-	  [0, 0, 1, 0],
-	  [1, 1, 0, 1],
-	  [0, 1, 1, 0]]
+								# 고쳐야 함
+								
+# Question 3
+def is_balanced(s):
+  stack = deque()
+  for paren in s:
+    if paren == '(' or paren == '{' or paren == '[':
+      stack.append(paren)
+    else:
+      if stack:
+        stack.pop()
+      else:
+        return False
+  if len(stack) != 0:
+    return False
+  return True
 
 
-result = transpose_2(g)
-print(result)
+print(is_balanced('({(()}))'))
