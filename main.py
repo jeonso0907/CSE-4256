@@ -27,17 +27,6 @@ def decode(s):
 			result += (int(s[i]) * s[i + 1])
 	return result
 
-# 고쳐야 함urn result
-
-def decode(s):
-	result = ''
-		for i in range(len(s) - 1):
-				if i % 2 == 0:
-							result += (int(s[i]) * s[i + 1])
-								return result
-
-								# 고쳐야 함
-								
 # Question 3
 def is_balanced(s):
   stack = deque()
