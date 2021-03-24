@@ -1,6 +1,9 @@
 from collections import deque
 import random
 
+# CSE 4256 Homework 8
+# Sooyoung Jeon
+
 # Question 1
 # Calculate the number of dots in pantagonal form with recursion
 def pentagonal_number(num):
