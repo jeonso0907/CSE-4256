@@ -5,7 +5,6 @@ from math import gcd
 
 class Fraction:
 
-
     #the constructor for the Fraction class
     #n is the numerator
     #d is the denominator
