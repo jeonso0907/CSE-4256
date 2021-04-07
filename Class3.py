@@ -7,6 +7,7 @@
 def is_unique(list):
   return len(list) is len(set(list))
 
+
 # Question 3
 # Check rather a string contains all the voewls
 def contains(s):
