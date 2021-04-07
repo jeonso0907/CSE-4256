@@ -8,7 +8,6 @@ class Fraction:
 		self.num = num
 		self.den = den
 
-
   #Returns a string representation of self. This is needed to print Fractions in a list correctly. 
 	def __repr__(self):
 		return str(self.num) + "/" + str(self.den)
