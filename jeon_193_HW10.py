@@ -2,6 +2,7 @@
 # Sooyoung Jeon
 
 # Question 1
+# Look and say n-th time
 def look_and_say(n):
 
     if n == 1:
@@ -30,6 +31,7 @@ def look_and_say(n):
     return s
 
 # Question 2
+# Collapse the path to the shortest path
 def shortest_path(s):
 
     temp = '/'
@@ -54,5 +56,5 @@ def shortest_path(s):
 
     return temp
 
-
+# Test Case
 print(shortest_path('/usr/home/./ece/lab2/./../../cse/systems/../software/lab2'))
